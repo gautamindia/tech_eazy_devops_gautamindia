@@ -15,7 +15,6 @@ It supports both **development** and **production** environments.
 
 ---
 
-## Usage
 
 ### 1. Provision Infrastructure with Terraform
 
