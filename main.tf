@@ -6,7 +6,8 @@ provider "aws" {
 resource "aws_instance" "ubuntu" {
   ami           = var.ami_id   
   instance_type = var.instance_type
-  key_name      = var.key_name != null ? var.key_name : null 
+  key_name = "ec2_key_1"
+  depends_on    = [aws_key_pair.my_key] 
   security_groups = [aws_security_group.my_app_sg.name]
   user_data = <<-EOF
     #!/bin/bash
@@ -52,3 +53,21 @@ resource "aws_security_group" "my_app_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "tls_private_key" "example" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "local_file" "private_key" {
+  content  = tls_private_key.example.private_key_pem
+  filename = "private_key/ec2_key_1.pem"
+  
+}
+
+
+resource "aws_key_pair" "my_key" {
+  key_name = "ec2_key_1"
+  public_key = tls_private_key.example.public_key_openssh  # Path to your existing public key file
+}
+
