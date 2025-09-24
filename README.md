@@ -11,7 +11,7 @@ It supports both **development** and **production** environments.
 - Terraform installed locally.  
 - SSH key pair for EC2 access. 
 - Access key and Secret access key for credentials of AWS Cloud
-- If you have a key pair for an EC2 instance, then add to it the variables.tf otherwise it processed without a key pair    
+- find your private key in private_key dir for ssh    
 
 ---
 
