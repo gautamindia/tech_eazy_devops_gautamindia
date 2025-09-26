@@ -9,6 +9,7 @@ variable "secret_key" {
   
 }
 
+
 variable "aws_region" {
   default = "ap-south-1"
 }
@@ -39,13 +40,6 @@ variable "stage" {
 variable "repo_url" {
   default = "https://github.com/Trainings-TechEazy/test-repo-for-devops"
 }
-
-variable "key_name" {
-  description = "Key pair to use for EC2 instance"
-  type        = string
-  default     = null
-}
-
 
 
 
